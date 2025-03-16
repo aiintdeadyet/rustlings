@@ -17,6 +17,7 @@
 //   the first element is the string, the second one is the command.
 // - The output element is going to be a vector of strings.
 
+#[derive(PartialEq)]
 enum Command {
     Uppercase,
     Trim,
@@ -28,16 +29,36 @@ mod my_module {
 
     // TODO: Complete the function as described above.
     // pub fn transformer(input: ???) -> ??? { ??? }
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
+        let mut output: Vec<String> = vec![];
+        for (string, command) in input.iter() {
+            match command {
+                Command::Uppercase => output.push(string.to_uppercase()),
+                Command::Trim => output.push(string.trim().to_string()),
+                Command::Append(n) => output.push(string.to_owned()+&"bar".repeat(*n)),
+            };
+        }
+        output
+    }
 }
 
 fn main() {
-    // You can optionally experiment here.
+    use crate::my_module::transformer;
+    let input = vec![
+        ("hello".to_string(), Command::Uppercase),
+        (" all roads lead to rome! ".to_string(), Command::Trim),
+        ("foo".to_string(), Command::Append(1)),
+        ("bar".to_string(), Command::Append(5)),
+    ];
+    let output = transformer(input);
+    // println!("{}", output);
 }
 
 #[cfg(test)]
 mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
     // use ???;
+    use crate::my_module::transformer;
     use super::Command;
 
     #[test]
