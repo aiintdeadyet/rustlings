@@ -5,7 +5,7 @@
 fn maybe_icecream(hour_of_day: u16) -> Option<u16> {
     // TODO: Complete the function body.
     if hour_of_day < 22 {
-        Some(5)
+        return Some(5);
     }
     if hour_of_day <= 23 {
         Some(0)
@@ -27,7 +27,7 @@ mod tests {
     fn raw_value() {
         // TODO: Fix this test. How do you get the value contained in the
         // Option?
-        let icecreams = maybe_icecream(12);
+        let icecreams = maybe_icecream(12).unwrap_or_default();
 
         assert_eq!(icecreams, 5); // Don't change this line.
     }

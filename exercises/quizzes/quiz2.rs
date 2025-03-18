@@ -43,15 +43,6 @@ mod my_module {
 }
 
 fn main() {
-    use crate::my_module::transformer;
-    let input = vec![
-        ("hello".to_string(), Command::Uppercase),
-        (" all roads lead to rome! ".to_string(), Command::Trim),
-        ("foo".to_string(), Command::Append(1)),
-        ("bar".to_string(), Command::Append(5)),
-    ];
-    let output = transformer(input);
-    // println!("{}", output);
 }
 
 #[cfg(test)]
